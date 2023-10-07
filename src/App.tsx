@@ -1,20 +1,14 @@
-import React from 'react'
-import logo from './logo.svg'
-
-import { Container, Header, Logo } from './styles'
+import Filter from './components/Filter'
+import HeaderDate from './components/HeaderDate'
+import ProgressBar from './components/ProgressBar'
+import { Container} from './styles'
 
 function App() {
   return (
     <Container>
-      <Header>
-        <Logo src={logo} alt="Sizebay logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a href="https://sizebay.com" target="_blank" rel="noopener noreferrer">
-          Learn about Sizebay
-        </a>
-      </Header>
+      <HeaderDate />
+      <ProgressBar progress={30} />
+      <Filter />
     </Container>
   )
 }
