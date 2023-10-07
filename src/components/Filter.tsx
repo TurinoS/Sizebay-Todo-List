@@ -13,6 +13,7 @@ const FilterDiv = styled.div`
         gap: 12px;
 
         & button {
+            background-color: #fff;
             color: #666;
             border: 1px solid #bbb;
             border-radius: 16px;

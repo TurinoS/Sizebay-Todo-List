@@ -1,3 +1,4 @@
+import AddItemInput from './components/AddItemInput'
 import Filter from './components/Filter'
 import HeaderDate from './components/HeaderDate'
 import ProgressBar from './components/ProgressBar'
@@ -9,6 +10,7 @@ function App() {
       <HeaderDate />
       <ProgressBar progress={30} />
       <Filter />
+      <AddItemInput />
     </Container>
   )
 }
