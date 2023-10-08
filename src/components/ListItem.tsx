@@ -4,6 +4,7 @@ import { AiFillMinusCircle, AiFillCheckCircle } from 'react-icons/ai'
 import { ReactNode, useState } from "react";
 
 const StyledItem = styled.li`
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,9 +16,14 @@ const StyledItem = styled.li`
     background-color: #f0f0f0;
     margin: 0 .25em .75em 0;
 
-
     :last-child {
         margin-bottom: 0;
+    }
+
+    & div {
+        position: absolute;
+        width: 88px;
+        left: calc(100% - 88px);
     }
 `
 

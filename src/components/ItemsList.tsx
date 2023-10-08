@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import ListItem from "./ListItem";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 const StyledList = styled.ul`
   margin-top: 1em;
@@ -23,20 +25,13 @@ const StyledList = styled.ul`
 `;
 
 export default function ItemsList() {
+  const { tasksList } = useContext(AppContext)
+
   return (
     <StyledList>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
-      <ListItem>Drive a cadilac across de Irish Sea</ListItem>
+      {tasksList?.map((item) => (
+        <ListItem>{item.item}</ListItem>
+      ))}
     </StyledList>
   );
 }
