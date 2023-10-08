@@ -3,16 +3,19 @@ import Filter from './components/Filter'
 import HeaderDate from './components/HeaderDate'
 import ItemsList from './components/ItemsList'
 import ProgressBar from './components/ProgressBar'
+import AppContextProvider from './context/AppContext'
 import { Container} from './styles'
 
 function App() {
   return (
     <Container>
       <HeaderDate />
-      <ProgressBar progress={30} />
-      <Filter />
-      <AddItemInput />
-      <ItemsList />
+      <AppContextProvider>
+        <ProgressBar progress={30} />
+        <Filter />
+        <AddItemInput />
+        <ItemsList />
+      </AppContextProvider>
     </Container>
   )
 }
