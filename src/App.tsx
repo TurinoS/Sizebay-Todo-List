@@ -11,7 +11,7 @@ function App() {
     <Container>
       <HeaderDate />
       <AppContextProvider>
-        <ProgressBar progress={30} />
+        <ProgressBar/>
         <Filter />
         <AddItemInput />
         <ItemsList />

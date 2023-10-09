@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components"
+import { AppContext } from "../context/AppContext";
 
 interface ProgressProps {
     progress: number,
@@ -15,9 +17,12 @@ const CurrentProgress = styled.div<ProgressProps>`
     border-radius: 2px;
     height: 16px;
     width: ${props => props.progress}%;
+    transition: 750ms;
 `
 
-export default function ProgressBar({ progress }: ProgressProps) {
+export default function ProgressBar() {
+    const { progress } = useContext(AppContext);
+
     return(
         <TotalProgress>
             <CurrentProgress progress={progress} />

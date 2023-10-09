@@ -29,7 +29,7 @@ const StyledItem = styled.li`
 `
 
 export default function ListItem( task: TaskType) {
-    const { toggleItemStatus } = useContext(AppContext);
+    const { toggleItemStatus, setHandleFiltering, handleFiltering } = useContext(AppContext);
     const [edit, setEdit] = useState(false);
 
     return(
@@ -38,9 +38,9 @@ export default function ListItem( task: TaskType) {
             {edit &&
                 <>
                     <div>
-                        <StyledButton color="#848484" onClick={() => toggleItemStatus(task.id)}><AiFillEdit /></StyledButton> 
-                        <StyledButton color="#E34F4F" onClick={() => console.log(!edit)}><AiFillMinusCircle /></StyledButton>
-                        <StyledButton color="#5DE290" onClick={() => toggleItemStatus(task.id)}><AiFillCheckCircle /></StyledButton> 
+                        <StyledButton color="#848484" onClick={() => console.log('faça a função')}><AiFillEdit /></StyledButton> 
+                        <StyledButton color="#E34F4F" onClick={() => console.log('faça a função')}><AiFillMinusCircle /></StyledButton>
+                        <StyledButton color="#5DE290" onClick={() => {toggleItemStatus(task.id); setHandleFiltering(handleFiltering === 'done' ? 'pending' : 'done')}}><AiFillCheckCircle /></StyledButton> 
                     </div>
                 </>    
             }
