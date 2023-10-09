@@ -1,6 +1,7 @@
 import styled from "styled-components"
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { BsCheckLg } from 'react-icons/bs' 
+import { AppContext } from "../context/AppContext"
 
 const FilterDiv = styled.div`
     display: grid;
@@ -41,15 +42,15 @@ const FilterDiv = styled.div`
 `
 
 export default function Filter() {
-    const [select, setSelect] = useState("done")
+    const { setHandleSearch, setHandleFiltering, handleFiltering } = useContext(AppContext);
 
     return(
         <FilterDiv>
             <div>
-                <button onClick={() => setSelect("done")} className={select === "done" ? "selected" : ""}>{select === "done" && <BsCheckLg />}Feito</button>
-                <button onClick={() => setSelect("pending")} className={select === "pending" ? "selected" : ""}>{select === "pending" && <BsCheckLg />}Pendente</button>
+                <button onClick={() => {handleFiltering === "done" ? setHandleFiltering('') : setHandleFiltering("done")}} className={handleFiltering === "done" ? "selected" : ""}>{handleFiltering === "done" && <BsCheckLg />}Feito</button>
+                <button onClick={() => {handleFiltering === "pending" ? setHandleFiltering('') : setHandleFiltering("pending")}} className={handleFiltering === "pending" ? "selected" : ""}>{handleFiltering === "pending" && <BsCheckLg />}Pendente</button>
             </div>
-            <input type="text" placeholder="Procurar item" />
+            <input type="text" placeholder="Procurar item" onChange={(e) => setHandleSearch(e.target.value)} />
         </FilterDiv>
     )
 }

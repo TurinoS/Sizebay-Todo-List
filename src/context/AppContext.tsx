@@ -8,15 +8,25 @@ type TasksListType = {
 type AppContextType = {
     tasksList: TasksListType[];
     addNewItem: (item: string) => void;
+    handleSearch: string;
+    setHandleSearch: (search: string) => void;
+    handleFiltering: string;
+    setHandleFiltering: (filter: string) => void;
 }
 
 export const AppContext = createContext<AppContextType>({
     tasksList: [],
     addNewItem: () => {},
+    handleSearch: '',
+    setHandleSearch: () => {},
+    handleFiltering: '',
+    setHandleFiltering: () => {},
 })
 
 export default function AppContextProvider({ children }: { children: ReactNode }) {
     const [tasksList , setTasksList] = useState([]);
+    const [handleSearch , setHandleSearch] = useState('');
+    const [handleFiltering , setHandleFiltering] = useState('');
 
     useEffect(() => {
         const localStorageItems = window.localStorage.getItem('items')
@@ -36,7 +46,7 @@ export default function AppContextProvider({ children }: { children: ReactNode }
     }
 
     return(
-        <AppContext.Provider value={{ tasksList, addNewItem }}>
+        <AppContext.Provider value={{ tasksList, addNewItem, handleSearch, setHandleSearch, handleFiltering, setHandleFiltering }}>
             {children}
         </AppContext.Provider>
     )
