@@ -47,8 +47,8 @@ export default function Filter() {
     return(
         <FilterDiv>
             <div>
-                <button onClick={() => {handleFiltering === "done" ? setHandleFiltering('') : setHandleFiltering("done"); filterDoneItems()}} className={handleFiltering === "done" ? "selected" : ""}>{handleFiltering === "done" && <BsCheckLg />}Feito</button>
-                <button onClick={() => {handleFiltering === "pending" ? setHandleFiltering('') : setHandleFiltering("pending"); filterPendingItems()}} className={handleFiltering === "pending" ? "selected" : ""}>{handleFiltering === "pending" && <BsCheckLg />}Pendente</button>
+                <button onClick={() => {handleFiltering === "done" ? setHandleFiltering('') : setHandleFiltering("done"); filterDoneItems()}} className={handleFiltering === "done" ? "selected" : ""}>{handleFiltering === "done" && <BsCheckLg />}Feitos</button>
+                <button onClick={() => {handleFiltering === "pending" ? setHandleFiltering('') : setHandleFiltering("pending"); filterPendingItems()}} className={handleFiltering === "pending" ? "selected" : ""}>{handleFiltering === "pending" && <BsCheckLg />}Pendentes</button>
             </div>
             <input type="text" placeholder="Procurar item" onChange={(e) => searchFilter(e.target.value)} />
         </FilterDiv>

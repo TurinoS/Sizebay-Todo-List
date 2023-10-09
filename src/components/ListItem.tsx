@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import StyledButton from "./Button";
-import { AiFillMinusCircle, AiFillCheckCircle } from 'react-icons/ai'
+import { AiFillMinusCircle, AiFillCheckCircle, AiFillEdit } from 'react-icons/ai'
 import { useContext, useState } from "react";
 import { AppContext, TaskType } from "../context/AppContext";
 
@@ -23,8 +23,8 @@ const StyledItem = styled.li`
 
     & div {
         position: absolute;
-        width: 88px;
-        left: calc(100% - 88px);
+        width: 132px;
+        left: calc(100% - 132px);
     }
 `
 
@@ -36,10 +36,13 @@ export default function ListItem( task: TaskType) {
         <StyledItem onClick={() => setEdit(!edit)}>
             {task.item}
             {edit &&
-                <div>
-                    <StyledButton color="#E34F4F" onClick={() => console.log(!edit)}><AiFillMinusCircle /></StyledButton>
-                    <StyledButton color="#5DE290" onClick={() => toggleItemStatus(task.id)}><AiFillCheckCircle /></StyledButton> 
-                </div>
+                <>
+                    <div>
+                        <StyledButton color="#848484" onClick={() => toggleItemStatus(task.id)}><AiFillEdit /></StyledButton> 
+                        <StyledButton color="#E34F4F" onClick={() => console.log(!edit)}><AiFillMinusCircle /></StyledButton>
+                        <StyledButton color="#5DE290" onClick={() => toggleItemStatus(task.id)}><AiFillCheckCircle /></StyledButton> 
+                    </div>
+                </>    
             }
         </StyledItem>
     )

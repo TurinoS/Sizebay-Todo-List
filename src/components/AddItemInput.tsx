@@ -23,11 +23,12 @@ const AddInput = styled.form`
 export default function AddItemInput() {
     const { addNewItem } = useContext(AppContext)
     const [newItem, setNewItem] = useState('');
+    const [onFocus, setOnFocus] = useState(false);
 
     return(
         <AddInput onSubmit={() => addNewItem(newItem)}>
-            <input type="text" placeholder="Adicionar item..." value={newItem} onChange={(e) => setNewItem(e.target.value)}/>
-            <StyledButton color="#4DA6B3" type="submit" opacity={.75}>{<AiFillPlusCircle />}</StyledButton>
+            <input type="text" placeholder="Adicionar item..." value={newItem} onChange={(e) => setNewItem(e.target.value)} onFocus={() => setOnFocus(true)} onBlur={() => setOnFocus(false)}/>
+            <StyledButton color="#4DA6B3" type="submit" focus={onFocus}>{<AiFillPlusCircle />}</StyledButton>
         </AddInput>
         
     )

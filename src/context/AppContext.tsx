@@ -31,13 +31,14 @@ export const AppContext = createContext<AppContextType>({
 
 export default function AppContextProvider({ children }: { children: ReactNode }) {
     const [tasksList , setTasksList] = useState([]);
-    const [handleFiltering , setHandleFiltering] = useState('');
+    const [handleFiltering , setHandleFiltering] = useState('pending');
 
     const localStorageItems = window.localStorage.getItem('items')
     let data = JSON.parse(localStorageItems || '[]')
 
     useEffect(() => {
         setTasksList(data);
+        filterPendingItems();
     }, []);
 
     const addNewItem = (item: string) => {
