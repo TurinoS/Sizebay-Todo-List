@@ -15,6 +15,8 @@ type AppContextType = {
     handleFiltering: string;
     setHandleFiltering: (filter: string) => void;
     toggleItemStatus: (id: string) => void;
+    filterPendingItems: () => void;
+    filterDoneItems: () => void;
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -25,6 +27,8 @@ export const AppContext = createContext<AppContextType>({
     handleFiltering: '',
     setHandleFiltering: () => {},
     toggleItemStatus: () => {},
+    filterPendingItems: () => {},
+    filterDoneItems: () => {},
 })
 
 export default function AppContextProvider({ children }: { children: ReactNode }) {
@@ -56,10 +60,20 @@ export default function AppContextProvider({ children }: { children: ReactNode }
     
           window.localStorage.setItem("items", JSON.stringify(updatedItems));
         }
-      };
+    };
+
+    const filterPendingItems = () => {
+        const pendingItems = data.filter((item: TaskType) => item.status === "pending");
+        setTasksList(pendingItems);
+    };
+
+    const filterDoneItems = () => {
+        const doneItems = data.filter((item: TaskType) => item.status === "done");
+        setTasksList(doneItems);
+    };
 
     return(
-        <AppContext.Provider value={{ tasksList, addNewItem, handleSearch, setHandleSearch, handleFiltering, setHandleFiltering, toggleItemStatus }}>
+        <AppContext.Provider value={{ tasksList, addNewItem, handleSearch, setHandleSearch, handleFiltering, setHandleFiltering, toggleItemStatus, filterPendingItems, filterDoneItems }}>
             {children}
         </AppContext.Provider>
     )
