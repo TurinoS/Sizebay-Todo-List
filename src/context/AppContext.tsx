@@ -38,7 +38,14 @@ export default function AppContextProvider({ children }: { children: ReactNode }
 
     useEffect(() => {
         setTasksList(data);
-        filterPendingItems();
+
+        if(handleFiltering === 'pending') {
+            filterPendingItems();
+        }
+
+        if(handleFiltering === 'done') {
+            filterDoneItems();
+        }
     }, []);
 
     const addNewItem = (item: string) => {
@@ -71,9 +78,17 @@ export default function AppContextProvider({ children }: { children: ReactNode }
     };
 
     const searchFilter = (search: string) => {
-        const filteredItems = data.filter((item: TaskType) => item.item.toLowerCase().includes(search.toLowerCase()));
+        const filteredItems = data.filter((item: TaskType) => {
+            if (handleFiltering === 'pending' && item.status !== 'pending') {
+                return false;
+            }
+            if (handleFiltering === 'done' && item.status !== 'done') {
+                return false;
+            }
+            return item.item.toLowerCase().includes(search.toLowerCase());
+        });
         setTasksList(filteredItems);
-      };
+    };
 
     return(
         <AppContext.Provider value={{ tasksList, addNewItem, handleFiltering, setHandleFiltering, toggleItemStatus, filterPendingItems, filterDoneItems, searchFilter }}>
