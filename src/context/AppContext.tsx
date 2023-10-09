@@ -10,30 +10,27 @@ export type TaskType = {
 type AppContextType = {
     tasksList: TaskType[];
     addNewItem: (item: string) => void;
-    handleSearch: string;
-    setHandleSearch: (search: string) => void;
     handleFiltering: string;
     setHandleFiltering: (filter: string) => void;
     toggleItemStatus: (id: string) => void;
     filterPendingItems: () => void;
     filterDoneItems: () => void;
+    searchFilter: (search: string) => void;
 }
 
 export const AppContext = createContext<AppContextType>({
     tasksList: [],
     addNewItem: () => {},
-    handleSearch: '',
-    setHandleSearch: () => {},
     handleFiltering: '',
     setHandleFiltering: () => {},
     toggleItemStatus: () => {},
     filterPendingItems: () => {},
     filterDoneItems: () => {},
+    searchFilter: () => {},
 })
 
 export default function AppContextProvider({ children }: { children: ReactNode }) {
     const [tasksList , setTasksList] = useState([]);
-    const [handleSearch , setHandleSearch] = useState('');
     const [handleFiltering , setHandleFiltering] = useState('');
 
     const localStorageItems = window.localStorage.getItem('items')
@@ -72,8 +69,13 @@ export default function AppContextProvider({ children }: { children: ReactNode }
         setTasksList(doneItems);
     };
 
+    const searchFilter = (search: string) => {
+        const filteredItems = data.filter((item: TaskType) => item.item.toLowerCase().includes(search.toLowerCase()));
+        setTasksList(filteredItems);
+      };
+
     return(
-        <AppContext.Provider value={{ tasksList, addNewItem, handleSearch, setHandleSearch, handleFiltering, setHandleFiltering, toggleItemStatus, filterPendingItems, filterDoneItems }}>
+        <AppContext.Provider value={{ tasksList, addNewItem, handleFiltering, setHandleFiltering, toggleItemStatus, filterPendingItems, filterDoneItems, searchFilter }}>
             {children}
         </AppContext.Provider>
     )

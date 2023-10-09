@@ -42,7 +42,7 @@ const FilterDiv = styled.div`
 `
 
 export default function Filter() {
-    const { setHandleSearch, setHandleFiltering, handleFiltering, filterPendingItems, filterDoneItems } = useContext(AppContext);
+    const { setHandleFiltering, handleFiltering, filterPendingItems, filterDoneItems, searchFilter } = useContext(AppContext);
 
     return(
         <FilterDiv>
@@ -50,7 +50,7 @@ export default function Filter() {
                 <button onClick={() => {handleFiltering === "done" ? setHandleFiltering('') : setHandleFiltering("done"); filterDoneItems()}} className={handleFiltering === "done" ? "selected" : ""}>{handleFiltering === "done" && <BsCheckLg />}Feito</button>
                 <button onClick={() => {handleFiltering === "pending" ? setHandleFiltering('') : setHandleFiltering("pending"); filterPendingItems()}} className={handleFiltering === "pending" ? "selected" : ""}>{handleFiltering === "pending" && <BsCheckLg />}Pendente</button>
             </div>
-            <input type="text" placeholder="Procurar item" onChange={(e) => setHandleSearch(e.target.value)} />
+            <input type="text" placeholder="Procurar item" onChange={(e) => searchFilter(e.target.value)} />
         </FilterDiv>
     )
 }
