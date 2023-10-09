@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { BsCheckLg } from 'react-icons/bs' 
 import { AppContext } from "../context/AppContext"
 

@@ -29,8 +29,8 @@ export default function ItemsList() {
 
   return (
     <StyledList>
-      {tasksList?.map((item) => (
-        <ListItem>{item.item}</ListItem>
+      {tasksList?.map((task) => (
+        <ListItem key={task.id} id={task.id} item={task.item} status={task.status} />
       ))}
     </StyledList>
   );
