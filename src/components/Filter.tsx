@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { useContext } from 'react'
-import { BsCheckLg } from 'react-icons/bs' 
+import { BsCheckLg, BsSearch } from 'react-icons/bs' 
 import { AppContext } from "../context/AppContext"
 
 const FilterDiv = styled.div`
@@ -32,12 +32,20 @@ const FilterDiv = styled.div`
         }
     }
 
-    & input {
+    & .searchDiv {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         border: 1px solid #bbb;
         border-radius: 4px;
-        padding: 0 12px;
-        outline: none;
+        padding: 0 8px;
         color: #666;
+
+        & input {
+            border: none;
+            outline: none;
+            color: #666;
+        }
     }
 `
 
@@ -50,7 +58,10 @@ export default function Filter() {
                 <button onClick={() => {setHandleFiltering("done"); filterDoneItems()}} className={handleFiltering === "done" ? "selected" : ""}>{handleFiltering === "done" && <BsCheckLg />}Feitos</button>
                 <button onClick={() => {setHandleFiltering("pending"); filterPendingItems()}} className={handleFiltering === "pending" ? "selected" : ""}>{handleFiltering === "pending" && <BsCheckLg />}Pendentes</button>
             </div>
-            <input type="text" placeholder="Procurar item" onChange={(e) => searchFilter(e.target.value)} />
+            <div className="searchDiv">
+                <input type="text" placeholder="Procurar item" onChange={(e) => searchFilter(e.target.value)} />
+                <BsSearch />
+            </div>
         </FilterDiv>
     )
 }
