@@ -17,6 +17,9 @@ type AppContextType = {
     filterDoneItems: () => void;
     searchFilter: (search: string) => void;
     progress: number;
+    deleteTask: (id:string) => void;
+    reRender: boolean;
+    setReRender: (n: boolean) => void;
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -29,12 +32,16 @@ export const AppContext = createContext<AppContextType>({
     filterDoneItems: () => {},
     searchFilter: () => {},
     progress: 0,
+    deleteTask: () => {},
+    reRender: false,
+    setReRender: () => {},
 })
 
 export default function AppContextProvider({ children }: { children: ReactNode }) {
-    const [tasksList, setTasksList] = useState([]);
+    const [tasksList, setTasksList] = useState<TaskType[]>([]);
     const [handleFiltering, setHandleFiltering] = useState('pending');
     const [progress, setProgress] = useState(0);
+    const [reRender, setReRender] = useState(false);
 
     const localStorageItems = window.localStorage.getItem('items')
     let data = JSON.parse(localStorageItems || '[]')
@@ -64,7 +71,7 @@ export default function AppContextProvider({ children }: { children: ReactNode }
         if(handleFiltering === 'done') {
             filterDoneItems();
         }
-    }, [handleFiltering]);
+    }, [reRender]);
 
     const addNewItem = (item: string) => {
         const newItem = { id: uuidv4() ,item, status: "pending" };
@@ -102,8 +109,27 @@ export default function AppContextProvider({ children }: { children: ReactNode }
         setProgress(percentage);
     };
 
+    const deleteTask = (id: string) => {
+        const itemIndex = data.findIndex((item: TaskType) => item.id === id);
+      
+        if (itemIndex !== -1) {
+          const updatedItems: TaskType[] = [...data];
+          updatedItems.splice(itemIndex, 1);
+          window.localStorage.setItem("items", JSON.stringify(updatedItems));
+          setTasksList(updatedItems);
+        }
+
+        if(handleFiltering === 'pending') {
+            filterPendingItems();
+        }
+
+        if(handleFiltering === 'done') {
+            filterDoneItems();
+        }
+      };
+
     return(
-        <AppContext.Provider value={{ tasksList, addNewItem, handleFiltering, setHandleFiltering, toggleItemStatus, filterPendingItems, filterDoneItems, searchFilter, progress }}>
+        <AppContext.Provider value={{ tasksList, addNewItem, handleFiltering, setHandleFiltering, toggleItemStatus, filterPendingItems, filterDoneItems, searchFilter, progress, deleteTask, reRender, setReRender }}>
             {children}
         </AppContext.Provider>
     )
