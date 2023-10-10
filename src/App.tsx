@@ -1,10 +1,11 @@
-import AddItemInput from './components/AddItemInput'
+import TextInput from './components/TextInput'
 import Filter from './components/Filter'
 import HeaderDate from './components/HeaderDate'
 import ItemsList from './components/ItemsList'
 import ProgressBar from './components/ProgressBar'
 import AppContextProvider from './context/AppContext'
 import { Container} from './styles'
+import { AiFillPlusCircle } from 'react-icons/ai'
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <AppContextProvider>
         <ProgressBar/>
         <Filter />
-        <AddItemInput />
+        <TextInput placeholder='Adicionar item...'><AiFillPlusCircle /></TextInput>
         <ItemsList />
       </AppContextProvider>
     </Container>

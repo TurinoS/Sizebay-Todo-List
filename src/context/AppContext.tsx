@@ -20,6 +20,8 @@ type AppContextType = {
     deleteTask: (id:string) => void;
     reRender: boolean;
     setReRender: (n: boolean) => void;
+    edit: boolean;
+    setEdit: (n: boolean) => void;
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -35,6 +37,8 @@ export const AppContext = createContext<AppContextType>({
     deleteTask: () => {},
     reRender: false,
     setReRender: () => {},
+    edit: false,
+    setEdit: () => {},
 })
 
 export default function AppContextProvider({ children }: { children: ReactNode }) {
@@ -42,6 +46,7 @@ export default function AppContextProvider({ children }: { children: ReactNode }
     const [handleFiltering, setHandleFiltering] = useState('pending');
     const [progress, setProgress] = useState(0);
     const [reRender, setReRender] = useState(false);
+    const [edit, setEdit] = useState(false);
 
     const localStorageItems = window.localStorage.getItem('items')
     let data = JSON.parse(localStorageItems || '[]')
@@ -129,7 +134,7 @@ export default function AppContextProvider({ children }: { children: ReactNode }
       };
 
     return(
-        <AppContext.Provider value={{ tasksList, addNewItem, handleFiltering, setHandleFiltering, toggleItemStatus, filterPendingItems, filterDoneItems, searchFilter, progress, deleteTask, reRender, setReRender }}>
+        <AppContext.Provider value={{ tasksList, addNewItem, handleFiltering, setHandleFiltering, toggleItemStatus, filterPendingItems, filterDoneItems, searchFilter, progress, deleteTask, reRender, setReRender, edit, setEdit }}>
             {children}
         </AppContext.Provider>
     )
