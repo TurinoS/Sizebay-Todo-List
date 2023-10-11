@@ -66,7 +66,7 @@ export default function Filter() {
                 <button onClick={() => {setHandleFiltering("pending"); filterPendingItems()}} className={handleFiltering === "pending" ? "selected" : ""}>{handleFiltering === "pending" && <BsCheckLg />}Pendentes</button>
             </div>
             <div className="searchDiv">
-                <input type="text" placeholder="Procurar item" onChange={(e) => searchFilter(e.target.value)} />
+                <input id="search" type="text" placeholder="Procurar item" onChange={(e) => searchFilter(e.target.value)} />
                 <BsSearch />
             </div>
         </FilterDiv>

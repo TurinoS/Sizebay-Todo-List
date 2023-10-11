@@ -14,7 +14,7 @@ function App() {
       <AppContextProvider>
         <ProgressBar/>
         <Filter />
-        <TextInput placeholder='Adicionar item...'><AiFillPlusCircle /></TextInput>
+        <TextInput id='newItem' placeholder='Adicionar item...'><AiFillPlusCircle /></TextInput>
         <ItemsList />
       </AppContextProvider>
     </Container>

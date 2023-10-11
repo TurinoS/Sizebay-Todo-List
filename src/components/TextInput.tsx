@@ -6,6 +6,7 @@ import { AppContext, TaskType } from "../context/AppContext"
 type InputProps = {
     placeholder: string,
     children: ReactNode,
+    id: string,
     editInput?: boolean,
     task?: TaskType,
     submit?: () => void,
@@ -27,7 +28,7 @@ const AddInput = styled.form`
     }
 `
 
-export default function TextInput({ placeholder, children, editInput, task, submit }: InputProps) {
+export default function TextInput({ placeholder, children, id, editInput, task, submit }: InputProps) {
     const { addNewItem, setEdit, editTaskText, reRender, setReRender } = useContext(AppContext)
     const [newTask, setNewTask] = useState('');
     const [onFocus, setOnFocus] = useState(false);
@@ -49,7 +50,7 @@ export default function TextInput({ placeholder, children, editInput, task, subm
 
     return(
         <AddInput onSubmit={(e) => {handleOnSubmit(e)}}>
-            <input type="text" placeholder={placeholder} value={newTask} onChange={(e) => setNewTask(e.target.value)} onFocus={() => setOnFocus(true)} onBlur={() => {setOnFocus(false)}}/>
+            <input type="text" id={id} placeholder={placeholder} value={newTask} onChange={(e) => setNewTask(e.target.value)} onFocus={() => setOnFocus(true)} onBlur={() => {setOnFocus(false)}}/>
             <StyledButton color="#4DA6B3" type="submit" focus={onFocus}>{children}</StyledButton>
         </AddInput>
     )
