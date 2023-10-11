@@ -7,6 +7,11 @@ const StyledList = styled.ul`
   margin-top: 1em;
   height: 300px;
   overflow-y: auto;
+
+  & p {
+    text-align: center;
+    margin-top: 1em;
+  }
   
     ::-webkit-scrollbar {
         width: 9px;
@@ -25,13 +30,17 @@ const StyledList = styled.ul`
 `;
 
 export default function ItemsList() {
-  const { tasksList } = useContext(AppContext)
+  const { tasksList, handleFiltering } = useContext(AppContext)
 
   return (
     <StyledList>
-      {tasksList?.map((task) => (
+      {tasksList.length > 0 ? tasksList.map((task) => (
         <ListItem key={task.id} id={task.id} item={task.item} status={task.status} />
-      ))}
+      )) : handleFiltering === 'pending' ?
+        <p>Lista vazia</p>
+        :
+        <p>Você ainda não completou nenhuma tarefa</p>
+      }
     </StyledList>
   );
 }

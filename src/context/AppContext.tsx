@@ -113,7 +113,11 @@ export default function AppContextProvider({ children }: { children: ReactNode }
     const calculateDonePercentage = () => {
         const doneItems = data.filter((item: TaskType) => item.status === "done");
         const percentage = (doneItems.length / data.length) * 100;
-        setProgress(percentage);
+        if(data.length === 0) {
+            setProgress(0)
+        } else {
+            setProgress(percentage);
+        }
     };
 
     const deleteTask = (id: string) => {
