@@ -43,7 +43,7 @@ export default function ListItem( task: TaskType) {
         <StyledItem onClick={() => setOptions(!options)}>
             {edit ? 
                 <div className="editInput">
-                    <TextInput placeholder="Novo item..." onBlur={() => setEdit(false)} editInput={true} task={task} submit={() => setEdit(false)}><AiFillEdit /></TextInput>
+                    <TextInput placeholder="Nova item..." editInput={true} task={task} submit={() => setEdit(false)}><AiFillEdit /></TextInput>
                 </div> 
             :
                 <>
