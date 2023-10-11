@@ -8,6 +8,12 @@ const FilterDiv = styled.div`
     grid-template-columns: 1fr 2fr;
     gap: 36px;
     justify-content: space-between;
+  
+    @media (max-width: 900px) {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 1em; 
+    }
 
     & div {
         display: flex;
@@ -40,6 +46,7 @@ const FilterDiv = styled.div`
         border-radius: 4px;
         padding: 0 8px;
         color: #666;
+        height: 29px;
 
         & input {
             border: none;
