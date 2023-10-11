@@ -4,7 +4,7 @@ import HeaderDate from './components/HeaderDate'
 import ItemsList from './components/ItemsList'
 import ProgressBar from './components/ProgressBar'
 import AppContextProvider from './context/AppContext'
-import { Container} from './styles'
+import { Container} from './components/Container'
 import { AiFillPlusCircle } from 'react-icons/ai'
 
 function App() {

@@ -1,12 +1,15 @@
 import styled from "styled-components"
 import StyledButton from "./Button"
 import { ReactNode, useContext, useState } from "react"
-import { AppContext } from "../context/AppContext"
+import { AppContext, TaskType } from "../context/AppContext"
 
 type InputProps = {
     placeholder: string,
     children: ReactNode,
     onBlur?: () => void,
+    editInput?: boolean,
+    task?: TaskType,
+    submit?: () => void,
 }
 
 const AddInput = styled.form`
@@ -25,16 +28,28 @@ const AddInput = styled.form`
     }
 `
 
-export default function TextInput({ placeholder, children, onBlur }: InputProps) {
-    const { addNewItem, setEdit } = useContext(AppContext)
-    const [newItem, setNewItem] = useState('');
+export default function TextInput({ placeholder, children, onBlur, editInput, task, submit }: InputProps) {
+    const { addNewItem, setEdit, editTaskText, reRender, setReRender } = useContext(AppContext)
+    const [newTask, setNewTask] = useState('');
     const [onFocus, setOnFocus] = useState(false);
 
+    const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+        if(editInput && task) {
+            newTask.length > 0 && editTaskText(task.id, newTask)
+        } else {
+            newTask.length > 0 && addNewItem(newTask); setNewTask('');
+        }
+        
+        setReRender(!reRender);
+        setEdit(false);
+    }
+
     return(
-        <AddInput onSubmit={() => {addNewItem(newItem); setEdit(false)}}>
-            <input type="text" placeholder={placeholder} value={newItem} onChange={(e) => setNewItem(e.target.value)} onFocus={() => setOnFocus(true)} onBlur={() => {setOnFocus(false); onBlur && onBlur()}}/>
+        <AddInput onSubmit={(e) => {handleOnSubmit(e); submit && submit()}}>
+            <input type="text" placeholder={placeholder} value={newTask} onChange={(e) => setNewTask(e.target.value)} onFocus={() => setOnFocus(true)} onBlur={() => {setOnFocus(false); onBlur && onBlur()}}/>
             <StyledButton color="#4DA6B3" type="submit" focus={onFocus}>{children}</StyledButton>
         </AddInput>
-        
     )
 }

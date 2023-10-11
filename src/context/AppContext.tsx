@@ -22,6 +22,7 @@ type AppContextType = {
     setReRender: (n: boolean) => void;
     edit: boolean;
     setEdit: (n: boolean) => void;
+    editTaskText: (id: string, newText: string) => void;
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -39,6 +40,7 @@ export const AppContext = createContext<AppContextType>({
     setReRender: () => {},
     edit: false,
     setEdit: () => {},
+    editTaskText: () => {},
 })
 
 export default function AppContextProvider({ children }: { children: ReactNode }) {
@@ -133,8 +135,21 @@ export default function AppContextProvider({ children }: { children: ReactNode }
         }
       };
 
+      const editTaskText = (id: string, newText: string) => {
+        const itemIndex = data.findIndex((item: TaskType) => item.id === id);
+
+        if (itemIndex !== -1) {
+            const updatedItems = [...data];
+
+            updatedItems[itemIndex].item = newText;
+
+            window.localStorage.setItem("items", JSON.stringify(updatedItems));
+            setTasksList(updatedItems);
+        }
+    };
+
     return(
-        <AppContext.Provider value={{ tasksList, addNewItem, handleFiltering, setHandleFiltering, toggleItemStatus, filterPendingItems, filterDoneItems, searchFilter, progress, deleteTask, reRender, setReRender, edit, setEdit }}>
+        <AppContext.Provider value={{ tasksList, addNewItem, handleFiltering, setHandleFiltering, toggleItemStatus, filterPendingItems, filterDoneItems, searchFilter, progress, deleteTask, reRender, setReRender, edit, setEdit, editTaskText }}>
             {children}
         </AppContext.Provider>
     )
