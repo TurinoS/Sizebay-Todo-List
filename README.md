@@ -1,32 +1,55 @@
-# Sizebay Project - Create Sizebay App
+# Sizebay Frontend Challenge - My ToDos
 
-This project was bootstrapped with [Create Sizebay App](https://github.com/sizebay/create-szb-app).
+## Você pode ver o projeto em funcionamento [AQUI](https://my-todos-turinos.vercel.app/)
 
-## Available Scripts
+## :dart: Proposta:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tive a oportunidade de encarar o desafio frontend proposto pela SIZEBAY e criar uma aplicação web que permite aos usuários gerenciar suas tarefas de forma eficaz, acompanhando seu progresso e mantendo suas pendências organizadas.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Para a estilização, apostei no uso de Styled Components, garantindo uma experiência visual agradável e personalizada. E para garantir a persistência dos dados do usuário, utilizei o Local Storage, tornando a experiência ainda mais prática. Foi um desafio incrível e uma oportunidade de aprimorar minhas habilidades em React e TypeScript.
 
-In the project directory, you can run:
+## 🛠 Tecnologias utilizadas:
 
-### `yarn start`
++ React
++ TypeScript
++ Styled components
++ Context API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ☑️ Para rodar você precisará:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ + Editor de código de sua preferência (recomendado VS code)
+ + Git
+ + Gerenciador de pacotes Yarn ou NPM
 
-### `yarn build`
+## 📝 Procedimentos de instalação
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone este repositório usando o comando:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+git clone https://github.com/TurinoS/Sizebay-Todo-List.git
+```
 
-## Found a bug?
+Na pasta do projeto instale as dependências com uso do npm ou yarn
 
-Be sure to report it at our [Issues page](https://github.com/sizebay/create-szb-app/issues).
+```
+npm install
 
-## Learn More
+ou
 
-To learn about Sizebay, check out our [website](https://sizebay.com/).
-To learn React, check out the [React documentation](https://reactjs.org/).
+yarn install
+```
+Inicie o projeto com
+
+```
+npm start
+
+ou
+
+yarn start
+```
+
+ou usar o link para o projeto [https://pokedex-turinos.vercel.app/](https://my-todos-turinos.vercel.app/)
+
+## 😎 Minhas redes
+
++ Linkedin - [paulo-turino](https://www.linkedin.com/in/paulo-turino/)
++ Instagram - [@paulo_turino](https://www.instagram.com/paulo_turino/)
++ GitHub - [TurinoS](https://github.com/TurinoS)
